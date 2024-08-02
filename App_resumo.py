@@ -4,10 +4,12 @@ import numpy as np
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lsa import LsaSummarizer
+import nltk
+
+nltk.download('punkt', quiet=True)
 
 def summarize_text(text, sentence_count=3):
     try:
-        # Inicializar o parser e o summarizer
         parser = PlaintextParser.from_string(text, Tokenizer("english"))
         summarizer = LsaSummarizer()
         summary = summarizer(parser.document, sentence_count)
@@ -31,4 +33,5 @@ if st.button("Gerar Resumo"):
 
 st.markdown(
     "Este app usa a biblioteca [sumy](https://github.com/miso-belica/sumy) para sumarização de texto.")
+
 
